@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>Given Votes</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'polls/style.css' %}">
+  </head>
+
+  <body>
+
+    <a href="{% url 'polls:index' %}">Back to all polls</a>
+
+    <h3>All given votes</h3>
+
+    <ul>
+    {% for vote in user_votes %}
+      <li>You voted for "{{ vote.choice.choice_text }}" in poll "{{ vote.choice.question.question_text }}"
+          at {{ vote.vote_time|date:"j/n/Y, G:i"}}.</li>
+    {% endfor %}
+    </ul>
+
+    <a href="{% url 'polls:logout' %}">Log out</a>
+
+  </body>
+
+</html>

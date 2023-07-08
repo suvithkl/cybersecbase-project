@@ -1,5 +1,6 @@
 import datetime
 from django.contrib import admin
+from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
 
@@ -30,3 +31,18 @@ class Choice(models.Model):
 
     def __str__(self):
         return self.choice_text
+
+
+class Account(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    last_poll_id = models.IntegerField(default=0)
+
+
+class Vote(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    choice = models.ForeignKey(Choice, on_delete=models.CASCADE)
+    vote_time = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('user', 'choice')
+

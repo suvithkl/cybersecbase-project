@@ -3,14 +3,18 @@
 
   <head>
     <title>Vote on Poll</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'polls/style.css' %}">
   </head>
 
   <body>
 
-    <form action="{% url 'polls:vote' question.id %}" method="post">
+    <a href="{% url 'polls:index' %}">Back to all polls</a>
+
+    <form action="{% url 'polls:vote' question.id %}" method="POST">
       {% csrf_token %}
       <fieldset>
-        <legend><h1>{{ question.question_text }}</h1></legend>
+        <legend><h2>{{ question.question_text }}</h2></legend>
         {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
         {% for choice in question.choice_set.all %}
           <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
@@ -19,6 +23,11 @@
       </fieldset>
       <input type="submit" value="Vote">
     </form>
+
+    <p></p>
+    <a href="{% url 'polls:votes' %}">My votes</a>
+    <p></p>
+    <a href="{% url 'polls:logout' %}">Log out</a>
 
   </body>
 

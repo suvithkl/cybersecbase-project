@@ -1,7 +1,22 @@
-li a {
+html{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+a:link {
     color: green;
+    font-family: inherit;
+}
+
+a:visited {
+    color: rgb(1, 90, 1);
+    font-family: inherit;
 }
 
 body {
-    background: white url("images/background.png") no-repeat;
+    background-color: rgb(163, 174, 148);
+    font-family: inherit;
+}
+
+p {
+    font-family: inherit;
 }
