@@ -29,6 +29,7 @@
     <form action="{% url 'polls:register' %}" method="POST">
       {% csrf_token %}
       <input type="text" name="username" placeholder="Username">
+      <input type="email" name="email" placeholder="Email">
       <input type="password" name="password" placeholder="Password">
       <input type="submit" value="Register">
     </form>

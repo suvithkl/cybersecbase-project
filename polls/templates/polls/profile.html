@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-uk">
 
   <head>
-    <title>Given Votes</title>
+    <title>My Profile</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'polls/style.css' %}">
   </head>
@@ -11,7 +11,7 @@
 
     <a href="{% url 'polls:index' %}">Back to all polls</a>
 
-    <h3>All given votes</h3>
+    <h3>All votes given by {{ user }}</h3>
 
     <ul>
     {% for vote in user_votes %}
@@ -20,6 +20,7 @@
     {% endfor %}
     </ul>
 
+    <p></p>
     <a href="{% url 'polls:logout' %}">Log out</a>
 
   </body>
