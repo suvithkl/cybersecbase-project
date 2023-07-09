@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en-uk">
+
+  <head>
+    <title>Polls</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'polls/style.css' %}">
+  </head>
+
+  <body>
+
+    <h3>Search for a poll</h3>
+
+    <form action="{% url 'polls:index' %}" method="GET">
+      <input type="text" name="search" placeholder="Search">
+      <input type="submit" value="Search">
+    </form>
+    <ul>
+      {% for question in questions %}
+      <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+      {% endfor %}
+    </ul>
+
+    {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+
+    <h3>Latest questions</h3>
+
+    {% if latest_questions %}
+      <ul>
+      {% for question in latest_questions %}
+      <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+      {% endfor %}
+      </ul>
+    {% else %}
+      <p>No polls are available.</p>
+    {% endif %}
+
+    <p></p>
+    <a href="{% url 'polls:profile' %}">My profile</a>
+    <p></p>
+    <a href="{% url 'polls:logout' %}">Log out</a>
+
+  </body>
+
+</html>

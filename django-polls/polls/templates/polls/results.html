@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en-uk">
+    
+  <head>
+    <title>Results</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'polls/style.css' %}">
+  </head>
+
+  <body>
+
+    <a href="{% url 'polls:index' %}">Back to all polls</a>
+
+    <h1>{{ question.question_text }}</h1>
+    
+    <ul>
+    {% for choice in question.choice_set.all %}
+      <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+    {% endfor %}
+    </ul>
+
+    <p></p>
+    <a href="{% url 'polls:profile' %}">My profile</a>
+    <p></p>
+    <a href="{% url 'polls:logout' %}">Log out</a>
+    
+  </body>
+
+</html>

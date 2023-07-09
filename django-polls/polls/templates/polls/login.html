@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en-uk">
+
+  <head>
+    <title>Login</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'polls/style.css' %}">
+  </head>
+
+  <body>
+
+    {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+
+    <h3>Log in</h3>
+    <form action="{% url 'polls:login' %}" method="POST">
+      {% csrf_token %}
+      <input type="text" name="username" placeholder="Username">
+      <input type="password" name="password" placeholder="Password">
+      <input type="submit" value="Log in">
+    </form>
+
+    <h3>Register</h3>
+    <form action="{% url 'polls:register' %}" method="POST">
+      {% csrf_token %}
+      <input type="text" name="username" placeholder="Username">
+      <input type="email" name="email" placeholder="Email">
+      <input type="password" name="password" placeholder="Password">
+      <input type="submit" value="Register">
+    </form>
+
+  </body>
+
+</html>
