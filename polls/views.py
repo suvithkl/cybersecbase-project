@@ -18,11 +18,6 @@ from .models import Account, Choice, Question, Vote
 
 TO_LOGIN = 'polls:login'
 
-"""
-Cross Site Request Forgery (CSRF)
-Comment out the below row (the decorator) for a fix
-"""
-@csrf_exempt
 def login_view(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -104,6 +99,11 @@ class ResultsView(generic.DetailView):
     template_name = "polls/results.html"
 
 
+"""
+Cross Site Request Forgery (CSRF)
+Comment out the below row (the decorator) for a fix
+"""
+@csrf_exempt
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     try:
